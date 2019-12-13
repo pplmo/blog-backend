@@ -1,0 +1,16 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <Properties>
+      <option name="SPACES_AROUND_KEY_VALUE_DELIMITER" value="true" />
+      <option name="KEEP_BLANK_LINES" value="true" />
+    </Properties>
+    <codeStyleSettings language="EditorConfig">
+      <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="true" />
+    </codeStyleSettings>
+    <codeStyleSettings language="yaml">
+      <indentOptions>
+        <option name="INDENT_SIZE" value="4" />
+      </indentOptions>
+    </codeStyleSettings>
+  </code_scheme>
+</component>

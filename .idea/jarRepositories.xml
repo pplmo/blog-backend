@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="8e72cb9b-9923-44f2-90a3-35771e9cf229" />
+      <option name="name" value="8e72cb9b-9923-44f2-90a3-35771e9cf229" />
+      <option name="url" value="https://maven.aliyun.com/repository/public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="2ab5c0e9-7948-4080-9d3c-5e610ba070f4" />
+      <option name="name" value="2ab5c0e9-7948-4080-9d3c-5e610ba070f4" />
+      <option name="url" value="https://maven.aliyun.com/repository/google" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="1d0815d8-814d-4e1a-8d29-91aeae3678fd" />
+      <option name="name" value="1d0815d8-814d-4e1a-8d29-91aeae3678fd" />
+      <option name="url" value="https://maven.aliyun.com/repository/spring" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="82049a02-cad6-4251-a773-4a4996fca566" />
+      <option name="name" value="82049a02-cad6-4251-a773-4a4996fca566" />
+      <option name="url" value="https://maven.aliyun.com/repository/spring-plugin" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="9728dffa-8a8d-4b6b-b622-7cde50f4b9ab" />
+      <option name="name" value="9728dffa-8a8d-4b6b-b622-7cde50f4b9ab" />
+      <option name="url" value="https://maven.aliyun.com/repository/gradle-plugin" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="MavenLocal" />
+      <option name="name" value="MavenLocal" />
+      <option name="url" value="file:/$MAVEN_REPOSITORY$/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="MavenRepo" />
+      <option name="name" value="MavenRepo" />
+      <option name="url" value="https://repo.maven.apache.org/maven2/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://maven.aliyun.com/repository/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven3" />
+      <option name="name" value="maven3" />
+      <option name="url" value="https://maven.aliyun.com/repository/spring/" />
+    </remote-repository>
+  </component>
+</project>
