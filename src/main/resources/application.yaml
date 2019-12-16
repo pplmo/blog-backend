@@ -1,0 +1,5 @@
+spring:
+    r2dbc:
+        url: r2dbc:postgresql://<server>:<port>/<database>
+        username: root
+        password: root
