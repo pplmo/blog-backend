@@ -3,8 +3,6 @@ package team.star.blog.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
 
@@ -15,9 +13,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
 public class User {
-    @Id
     private int id;
     private String name;
     private String password;
