@@ -1,5 +1,5 @@
 spring:
     r2dbc:
-        url: r2dbc:postgresql://<server>:<port>/<database>
-        username: root
-        password: root
+        url: r2dbc:postgresql://localhost:5432/blog
+        username: postgres
+        password: postgres123456!
