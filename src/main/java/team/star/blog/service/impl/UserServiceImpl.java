@@ -16,16 +16,16 @@ import javax.annotation.Resource;
 public class UserServiceImpl implements UserService {
 
     @Resource
-    private UserRepository dao;
+    private UserRepository userRepository;
 
     @Override
     public Mono<User> save(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
     public Mono<User> findById(int id) {
-        return dao.findById(id);
+        return userRepository.findById(id);
     }
 
     @Override
