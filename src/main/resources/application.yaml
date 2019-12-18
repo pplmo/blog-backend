@@ -1,5 +1,7 @@
 spring:
     r2dbc:
-        url: r2dbc:postgresql://localhost:5432/blog
+        url: r2dbc:pool:postgresql://localhost:5432/blog
         username: postgres
         password: postgres123456!
+        pool:
+            validation-query: SELECT 1

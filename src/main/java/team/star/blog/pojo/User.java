@@ -3,8 +3,10 @@ package team.star.blog.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * @author mystic
@@ -13,16 +15,18 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table("t_user")
 public class User {
+    @Id
     private int id;
     private String name;
     private String password;
     private String mail;
     private String url;
     private String screenName;
-    private Date created;
-    private Date activated;
-    private Date logged;
+    private Instant created;
+    private Instant activated;
+    private Instant logged;
     private String group;
     private String authCode;
 }
