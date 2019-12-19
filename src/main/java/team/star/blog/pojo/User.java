@@ -19,14 +19,44 @@ import java.time.Instant;
 public class User {
     @Id
     private int id;
+    /**
+     * user name, uniqueness
+     */
     private String name;
+    /**
+     * user password
+     */
     private String password;
+    /**
+     * user mail, uniqueness
+     */
     private String mail;
+    /**
+     * user homepage
+     */
     private String url;
+    /**
+     * user screen name, i.e. nickname
+     */
     private String screenName;
+    /**
+     * user account created time
+     */
     private Instant created;
+    /**
+     * last active time
+     */
     private Instant activated;
+    /**
+     * last login time
+     */
     private Instant logged;
+    /**
+     * user group
+     */
     private String group;
+    /**
+     * user authentication code
+     */
     private String authCode;
 }
