@@ -1,8 +1,6 @@
 package team.star.blog.pojo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -13,8 +11,6 @@ import java.time.Instant;
  * @date 2019-12-15 19:43
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table("t_user")
 public class User {
     @Id
