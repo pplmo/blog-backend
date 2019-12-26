@@ -1,47 +1,48 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.2.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'java'
-	id 'war'
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    /* generate image and then push to docker hub */
+    id 'com.google.cloud.tools.jib' version '1.8.0'
 }
+/* specify docker hub repo */
+jib.to.image = "purplemystic/blog"
 
 group = 'team.star'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
-	maven { url 'https://repo.spring.io/milestone' }
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
 }
 
 dependencies {
-	implementation 'org.springframework.boot.experimental:spring-boot-starter-data-r2dbc'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	runtimeOnly 'io.r2dbc:r2dbc-postgresql'
-	runtimeOnly 'org.postgresql:postgresql'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-	testImplementation 'org.springframework.boot.experimental:spring-boot-test-autoconfigure-r2dbc'
-	testImplementation 'io.projectreactor:reactor-test'
+    implementation 'org.springframework.boot.experimental:spring-boot-starter-data-r2dbc'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    runtimeOnly 'io.r2dbc:r2dbc-postgresql'
+    runtimeOnly 'org.postgresql:postgresql'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.springframework.boot.experimental:spring-boot-test-autoconfigure-r2dbc'
+    testImplementation 'io.projectreactor:reactor-test'
 }
 
 dependencyManagement {
-	imports {
-		mavenBom 'org.springframework.boot.experimental:spring-boot-bom-r2dbc:0.1.0.M3'
-	}
+    imports {
+        mavenBom 'org.springframework.boot.experimental:spring-boot-bom-r2dbc:0.1.0.M3'
+    }
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
