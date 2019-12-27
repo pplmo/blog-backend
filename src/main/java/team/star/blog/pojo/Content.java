@@ -13,7 +13,6 @@ import java.time.Instant;
 @Data
 @Table("t_content")
 public class Content {
-
     @Id
     private int id;
     /**
@@ -33,5 +32,8 @@ public class Content {
     private String type;
     private String status;
     private String password;
-
+    private int commentsNum;
+    private boolean isAllowedComment;
+    private boolean isAllowedPing;
+    private boolean isAllowedFeed;
 }

@@ -10,4 +10,6 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @Table("t_relationship")
 public class Relationship {
+    private int contentId;
+    private int metadataId;
 }
