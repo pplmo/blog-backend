@@ -16,7 +16,7 @@ https://travis-ci.com/PurpleMystic-star/blog-backend
 # assign port 8080 for blog's netty service
 docker run -d --name pg_db \
     -p 5432:5432 \
-    -p 8080:8080 \
+    -p 8888:8080 \
     -e 'POSTGRES_USER=blog' \
     -e 'POSTGRES_PASSWORD=blog' \
     -e 'POSTGRES_DB=blog' \
