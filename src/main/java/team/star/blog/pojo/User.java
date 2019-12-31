@@ -50,7 +50,7 @@ public class User {
     /**
      * user group
      */
-    private String group;
+    private String groupName;
     /**
      * user authentication code
      */

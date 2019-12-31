@@ -18,5 +18,5 @@ public class Metadata {
     private String type;
     private String description;
     private int count;
-    private int order;
+    private int orderNum;
 }

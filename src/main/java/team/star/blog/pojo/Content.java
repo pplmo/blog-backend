@@ -26,7 +26,7 @@ public class Content {
     private Instant created;
     private Instant modified;
     private String text;
-    private int order;
+    private int orderNum;
     private int authorId;
     private String template;
     private String type;

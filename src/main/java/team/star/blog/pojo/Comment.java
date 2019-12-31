@@ -17,9 +17,7 @@ public class Comment {
     private int id;
     private int contentId;
     private Instant created;
-    private String author;
-    private int authorId;
-    private int ownerId;
+    private int commentAuthorId;
     private String mail;
     private String url;
     private String ip;
