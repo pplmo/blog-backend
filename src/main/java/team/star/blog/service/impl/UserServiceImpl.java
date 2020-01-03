@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<User> findById(int id) {
+    public Mono<User> findById(Integer id) {
         return userRepository.findById(id);
     }
 
@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Flux<User> findAll() {
+        return null;
+    }
+
+    @Override
+    public Mono<Void> deleteById(Integer integer) {
         return null;
     }
 
