@@ -46,6 +46,7 @@ dependencies {
     }
     testImplementation 'org.springframework.boot.experimental:spring-boot-test-autoconfigure-r2dbc'
     testImplementation 'io.projectreactor:reactor-test'
+    /* for rest docs */
     testImplementation "org.springframework.restdocs:spring-restdocs-webtestclient:${project.ext['spring-restdocs.version']}"
     asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:${project.ext['spring-restdocs.version']}"
 }
@@ -64,4 +65,11 @@ test {
 asciidoctor {
     inputs.dir snippetsDir
     dependsOn test
+}
+
+jar {
+    dependsOn asciidoctor
+    from ("${asciidoctor.outputDir}/html5") {
+        into 'static/docs'
+    }
 }
