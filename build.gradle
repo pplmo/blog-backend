@@ -2,6 +2,9 @@ plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
+    /* for rest docs */
+    id 'org.asciidoctor.convert' version '1.5.8'
     /* generate image and then push it to DockerHub */
     id 'com.google.cloud.tools.jib' version '1.8.0'
 }
@@ -19,9 +22,17 @@ configurations {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/libs-snapshot' }
 }
+
+/* for rest docs */
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+ext['spring-restdocs.version'] = '2.0.4.RELEASE'
 
 dependencies {
     implementation 'org.springframework.boot.experimental:spring-boot-starter-data-r2dbc'
@@ -35,6 +46,8 @@ dependencies {
     }
     testImplementation 'org.springframework.boot.experimental:spring-boot-test-autoconfigure-r2dbc'
     testImplementation 'io.projectreactor:reactor-test'
+    testImplementation "org.springframework.restdocs:spring-restdocs-webtestclient:${project.ext['spring-restdocs.version']}"
+    asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:${project.ext['spring-restdocs.version']}"
 }
 
 dependencyManagement {
@@ -44,5 +57,11 @@ dependencyManagement {
 }
 
 test {
+    outputs.dir snippetsDir
     useJUnitPlatform()
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
 }
