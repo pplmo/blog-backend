@@ -1,0 +1,30 @@
+== *Backend: findUserById:*
+
+=== Curl request:
+
+include::{snippets}/findUserById/curl-request.adoc[]
+
+=== HTTP request:
+
+include::{snippets}/findUserById/http-request.adoc[]
+
+=== HTTP response:
+
+include::{snippets}/findUserById/http-response.adoc[]
+
+=== Request using HTTPie:
+
+include::{snippets}/findUserById/httpie-request.adoc[]
+
+=== Request body:
+
+include::{snippets}/findUserById/request-body.adoc[]
+
+==== Request fields:
+
+include::{snippets}/findUserById/request-fields.adoc[]
+
+
+=== Response body:
+
+include::{snippets}/findUserById/response-body.adoc[]
