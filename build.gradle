@@ -13,6 +13,10 @@ plugins {
 /* jib.to.image = "purplemystic/blog" */
 // or use the following
 jib {
+    from {
+        image = "openjdk:${sourceCompatibility}"
+        credHelper = ''
+    }
     to {
         image = "${DOCKER_HUB_USERNAME}/blog"
         auth {
