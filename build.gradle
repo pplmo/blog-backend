@@ -8,8 +8,19 @@ plugins {
     /* generate image and then push it to DockerHub */
     id 'com.google.cloud.tools.jib' version '1.8.0'
 }
-/* specify DockerHub repo */
-jib.to.image = "purplemystic/blog"
+/* ====== specify DockerHub repo ====== */
+// if logged on your local docker, you can use the next line directly
+/* jib.to.image = "purplemystic/blog" */
+// or use the following
+jib {
+    to {
+        image = "${DOCKER_HUB_USERNAME}/blog"
+        auth {
+            username = DOCKER_HUB_USERNAME // Defined in 'gradle.properties'.
+            password = DOCKER_HUB_PASSWORD
+        }
+    }
+}
 
 group = 'team.star'
 version = '0.0.1-SNAPSHOT'
@@ -70,7 +81,7 @@ asciidoctor {
 
 bootJar {
     dependsOn asciidoctor
-    from ("${asciidoctor.outputDir}/html5") {
+    from("${asciidoctor.outputDir}/html5") {
         into 'static/docs'
     }
 }

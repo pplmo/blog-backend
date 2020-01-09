@@ -1,5 +1,5 @@
-= Blog Backend Api Documentation
-Purple mystic;
+= Blog Restful API
+Purple Mystic;
 :toc: left ➊
 :toc-title: Chapter
 :doctype: book

@@ -20,10 +20,6 @@ include::{snippets}/findUserById/httpie-request.adoc[]
 
 include::{snippets}/findUserById/request-body.adoc[]
 
-==== Request fields:
-
-include::{snippets}/findUserById/request-fields.adoc[]
-
 
 === Response body:
 
