@@ -19,8 +19,6 @@ import team.star.blog.service.UserService;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.document;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.documentationConfiguration;
 
@@ -38,11 +36,8 @@ public class UserControllerTests {
 
     @BeforeEach
     void setUp(RestDocumentationContextProvider provider) {
-        User u1 = new User();
-        User u2 = new User();
-        u1.setId(1);
-        u2.setId(2);
-        u1.setName("cc");
+        User u1 = User.builder().id(1).name("cc").build();
+        User u2 = User.builder().id(2).name("mystic").build();
 
         client = WebTestClient.bindToApplicationContext(context)
                 .configureClient()
