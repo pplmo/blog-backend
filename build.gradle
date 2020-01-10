@@ -13,23 +13,26 @@ group = 'team.star'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-/* ====== specify DockerHub repo ====== */
-// if logged on your local docker, you can use the next line directly
-/* jib.to.image = "purplemystic/blog" */
-// or use the following
-jib {
-    from {
-        image = "openjdk:${sourceCompatibility}"
-        auth {
-            username = DOCKER_HUB_USERNAME
-            password = DOCKER_HUB_PASSWORD
+/* ====== specify DockerHub repo By Google JIB framework ====== */
+// if logged on your local docker, you don't need to configure the following two global variable
+if (!hasProperty("DOCKER_HUB_USERNAME") || !hasProperty("DOCKER_HUB_USERNAME")) {
+    jib.to.image = "purplemystic/blog"
+} else {
+    // Or, you need configure them in gradle.properties and use them as follow.
+    jib {
+        from {
+            image = "openjdk:${sourceCompatibility}"
+            auth {
+                username = DOCKER_HUB_USERNAME
+                password = DOCKER_HUB_PASSWORD
+            }
         }
-    }
-    to {
-        image = "${DOCKER_HUB_USERNAME}/blog"
-        auth {
-            username = DOCKER_HUB_USERNAME // Defined in 'gradle.properties'.
-            password = DOCKER_HUB_PASSWORD
+        to {
+            image = "${DOCKER_HUB_USERNAME}/blog"
+            auth {
+                username = DOCKER_HUB_USERNAME // Defined in 'gradle.properties'.
+                password = DOCKER_HUB_PASSWORD
+            }
         }
     }
 }

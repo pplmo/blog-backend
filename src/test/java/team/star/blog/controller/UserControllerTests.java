@@ -36,8 +36,8 @@ public class UserControllerTests {
 
     @BeforeEach
     void setUp(RestDocumentationContextProvider provider) {
-        User u1 = User.builder().id(1).name("cc").build();
-        User u2 = User.builder().id(2).name("mystic").build();
+        User u1 = User.builder().id(1).name("Ran").build();
+        User u2 = User.builder().id(2).name("Mystic").build();
 
         client = WebTestClient.bindToApplicationContext(context)
                 .configureClient()
