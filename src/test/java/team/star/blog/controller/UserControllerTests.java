@@ -19,6 +19,8 @@ import team.star.blog.service.UserService;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.document;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.documentationConfiguration;
 
@@ -49,9 +51,13 @@ public class UserControllerTests {
 
     @Test
     void findUserById() {
-        client.get().uri("/user/1").exchange()
+        client.get().uri("/user/{id}", 1).exchange()
                 .expectStatus().isOk()
                 .expectBody(User.class)
-                .consumeWith(document("findUserById"));
+                .consumeWith(document("findUserById",
+                        pathParameters(
+                                parameterWithName("id").description("User ID")
+                        )
+                ));
     }
 }
