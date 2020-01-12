@@ -10,7 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
-import org.springframework.restdocs.templates.TemplateFormats;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -43,7 +42,10 @@ public class UserControllerTests {
         client = WebTestClient.bindToApplicationContext(context)
                 .configureClient()
                 .filter(
-                        documentationConfiguration(provider).snippets().withTemplateFormat(TemplateFormats.markdown())
+                        documentationConfiguration(provider)
+                                .operationPreprocessors()
+                                .withRequestDefaults(prettyPrint())
+                                .withResponseDefaults(prettyPrint())
                 )
                 .build();
 
@@ -61,9 +63,8 @@ public class UserControllerTests {
                 .expectStatus().isOk()
                 .expectBody(User.class)
                 .consumeWith(document("findUserById",
-                        pathParameters(
-                                parameterWithName("id").description("User ID")
-                        )
+                        pathParameters(parameterWithName("id").description("User ID"))
                 ));
+
     }
 }
