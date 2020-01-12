@@ -30,21 +30,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Mono<User> findByName(String name) {
-        return null;
+        return userRepository.findUserByName(name);
     }
 
     @Override
     public Flux<User> findAll() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
-    public Mono<Void> deleteById(Integer integer) {
-        return null;
+    public Mono<Void> deleteById(Integer id) {
+        return userRepository.deleteById(id);
     }
 
     @Override
     public Mono<Void> deleteByName(String name) {
-        return null;
+        return userRepository.deleteUserByName(name);
     }
 }

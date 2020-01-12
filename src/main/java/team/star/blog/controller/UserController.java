@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import team.star.blog.pojo.User;
 import team.star.blog.service.UserService;
@@ -30,5 +31,10 @@ public class UserController {
     @GetMapping("/{id}")
     public Mono<User> findUserById(@PathVariable int id) {
         return userService.findById(id);
+    }
+
+    @GetMapping
+    public Flux<User> findAllUsers() {
+        return userService.findAll();
     }
 }

@@ -1,0 +1,25 @@
+== *Backend: findAllUsers:*
+
+=== Curl request:
+
+include::{snippets}/findAllUsers/curl-request.adoc[]
+
+=== HTTP request:
+
+include::{snippets}/findAllUsers/http-request.adoc[]
+
+=== HTTP response:
+
+include::{snippets}/findAllUsers/http-response.adoc[]
+
+=== Request using HTTPie:
+
+include::{snippets}/findAllUsers/httpie-request.adoc[]
+
+=== Request body:
+
+include::{snippets}/findAllUsers/request-body.adoc[]
+
+=== Response body:
+
+include::{snippets}/findAllUsers/response-body.adoc[]

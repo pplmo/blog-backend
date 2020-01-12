@@ -67,4 +67,12 @@ public class UserControllerTests {
                 ));
 
     }
+
+    @Test
+    void findAllUsers() {
+        client.get().uri("/user/").exchange()
+                .expectStatus().isOk()
+                .expectBodyList(User.class).hasSize(2)
+                .consumeWith(document("findAllUsers"));
+    }
 }

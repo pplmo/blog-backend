@@ -4,7 +4,7 @@ plugins {
     id 'java'
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
     /* for rest docs */
-    id 'org.asciidoctor.convert' version '1.5.9.2'
+    id 'org.asciidoctor.convert' version '1.5.8'
     /* generate image and then push it to DockerHub */
     id 'com.google.cloud.tools.jib' version '1.8.0'
 }
@@ -89,6 +89,18 @@ asciidoctor {
     inputs.dir snippetsDir
     dependsOn test
 }
+
+/*githubPages {
+    repoUri = 'https://github.com/PurpleMystic-star/blog.git'
+    credentials {
+        username = project.hasProperty('githubToken') ? project.githubToken : ''
+        password = ''
+    }
+
+    pages {
+        from 'build/asciidoc/html5'
+    }
+}*/
 
 bootJar {
     dependsOn asciidoctor

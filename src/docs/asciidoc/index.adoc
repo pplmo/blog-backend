@@ -7,3 +7,4 @@ Purple Mystic;
 :source-highlighter: highlightjs
 
 include::findUserById.adoc[]
+include::findAllUsers.adoc[]

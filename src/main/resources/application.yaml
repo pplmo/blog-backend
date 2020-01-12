@@ -5,3 +5,9 @@ spring:
         password: blog
         pool:
             validation-query: SELECT 1
+logging:
+    level:
+        org:
+            springframework:
+                data:
+                    r2dbc: DEBUG

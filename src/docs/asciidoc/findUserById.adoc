@@ -16,6 +16,10 @@ include::{snippets}/findUserById/http-response.adoc[]
 
 include::{snippets}/findUserById/httpie-request.adoc[]
 
+=== Path parameters:
+
+include::{snippets}/findUserById/path-parameters.adoc[]
+
 === Request body:
 
 include::{snippets}/findUserById/request-body.adoc[]
