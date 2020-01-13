@@ -75,4 +75,8 @@ public class UserControllerTests {
                 .expectBodyList(User.class).hasSize(2)
                 .consumeWith(document("findAllUsers"));
     }
+
+    @Test
+    void saveOrUpdateUser() {
+    }
 }
