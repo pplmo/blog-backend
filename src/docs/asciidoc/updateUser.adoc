@@ -1,0 +1,25 @@
+== *Backend: updateUser:*
+
+=== Curl request:
+
+include::{snippets}/updateUser/curl-request.adoc[]
+
+=== HTTP request:
+
+include::{snippets}/updateUser/http-request.adoc[]
+
+=== HTTP response:
+
+include::{snippets}/updateUser/http-response.adoc[]
+
+=== Request using HTTPie:
+
+include::{snippets}/updateUser/httpie-request.adoc[]
+
+=== Request body:
+
+include::{snippets}/updateUser/request-body.adoc[]
+
+=== Response body:
+
+include::{snippets}/updateUser/response-body.adoc[]

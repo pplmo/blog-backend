@@ -18,8 +18,14 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserRepository userRepository;
 
+
     @Override
-    public Mono<User> save(User user) {
+    public Mono<User> create(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public Mono<User> update(User user) {
         return userRepository.save(user);
     }
 

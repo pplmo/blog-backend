@@ -1,18 +1,22 @@
 package team.star.blog.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import team.star.blog.pojo.User;
 import team.star.blog.service.UserService;
 
 import javax.annotation.Resource;
+import java.net.URI;
 
 /**
  * @author mystic
@@ -25,13 +29,14 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public Mono<User> addUser(@RequestBody User user) {
-        return userService.save(user);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<User> createUser(@RequestBody User user) {
+        return userService.create(user);
     }
 
     @PatchMapping
     public Mono<User> updateUser(@RequestBody User user) {
-        return userService.save(user);
+        return userService.update(user);
     }
 
     @GetMapping("/{id}")

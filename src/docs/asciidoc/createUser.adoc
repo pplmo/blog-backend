@@ -1,0 +1,25 @@
+== *Backend: createUser:*
+
+=== Curl request:
+
+include::{snippets}/createUser/curl-request.adoc[]
+
+=== HTTP request:
+
+include::{snippets}/createUser/http-request.adoc[]
+
+=== HTTP response:
+
+include::{snippets}/createUser/http-response.adoc[]
+
+=== Request using HTTPie:
+
+include::{snippets}/createUser/httpie-request.adoc[]
+
+=== Request body:
+
+include::{snippets}/createUser/request-body.adoc[]
+
+=== Response body:
+
+include::{snippets}/createUser/response-body.adoc[]

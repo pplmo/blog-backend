@@ -50,12 +50,13 @@ public class UserControllerTests {
                 )
                 .build();
 
-        User u1 = User.builder().id(1).name("Ran").build();
-        User u2 = User.builder().id(2).name("Mystic").build();
+        User u1 = User.builder().id(1).name("Mystic").build();
+        User u2 = User.builder().id(2).name("Ran").build();
 
         when(userService.findAll()).thenReturn(Flux.fromIterable(List.of(u1, u2)));
         when(userService.findById(Mockito.anyInt())).thenReturn(Mono.just(u1));
-        when(userService.save(Mockito.any(User.class))).thenReturn(Mono.just(u1));
+        when(userService.create(Mockito.any(User.class))).thenReturn(Mono.just(u1));
+        when(userService.update(Mockito.any(User.class))).thenReturn(Mono.just(u2));
     }
 
     @Test
@@ -79,7 +80,7 @@ public class UserControllerTests {
     }
 
     @Test
-    void addUser() {
+    void createUser() {
         User u3 = User.builder().name("cc").build();
         client.post().uri("/user")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -88,9 +89,11 @@ public class UserControllerTests {
                 .exchange()
                 .expectStatus().isCreated()
                 .expectBody()
-                .jsonPath("$.id").isNotEmpty();
+                .jsonPath("$.id").isEqualTo(1)
+                .consumeWith(document("createUser"));
     }
 
+    @Test
     void updateUser() {
         User u2 = User.builder().id(2).name("cc").build();
         client.patch().uri("/user")
@@ -100,6 +103,7 @@ public class UserControllerTests {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
-                .jsonPath("$.name").isEqualTo("cc");
+                .jsonPath("$.name").isEqualTo("Ran")
+                .consumeWith(document("updateUser"));
     }
 }
