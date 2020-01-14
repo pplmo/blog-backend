@@ -1,6 +1,7 @@
 package team.star.blog.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public Mono<User> save(@RequestBody User user) {
+    public Mono<User> addUser(@RequestBody User user) {
+        return userService.save(user);
+    }
+
+    @PatchMapping
+    public Mono<User> updateUser(@RequestBody User user) {
         return userService.save(user);
     }
 

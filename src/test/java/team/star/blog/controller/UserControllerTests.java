@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -54,6 +55,7 @@ public class UserControllerTests {
 
         when(userService.findAll()).thenReturn(Flux.fromIterable(List.of(u1, u2)));
         when(userService.findById(Mockito.anyInt())).thenReturn(Mono.just(u1));
+        when(userService.save(Mockito.any(User.class))).thenReturn(Mono.just(u1));
     }
 
     @Test
@@ -70,13 +72,34 @@ public class UserControllerTests {
 
     @Test
     void findAllUsers() {
-        client.get().uri("/user/").exchange()
+        client.get().uri("/user").exchange()
                 .expectStatus().isOk()
-                .expectBodyList(User.class).hasSize(2)
+                .expectBodyList(User.class)
                 .consumeWith(document("findAllUsers"));
     }
 
     @Test
-    void saveOrUpdateUser() {
+    void addUser() {
+        User u3 = User.builder().name("cc").build();
+        client.post().uri("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(u3), User.class)
+                .exchange()
+                .expectStatus().isCreated()
+                .expectBody()
+                .jsonPath("$.id").isNotEmpty();
+    }
+
+    void updateUser() {
+        User u2 = User.builder().id(2).name("cc").build();
+        client.patch().uri("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(u2), User.class)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.name").isEqualTo("cc");
     }
 }
