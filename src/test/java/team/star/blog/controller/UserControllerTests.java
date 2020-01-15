@@ -55,8 +55,7 @@ public class UserControllerTests {
 
         when(userService.findAll()).thenReturn(Flux.fromIterable(List.of(u1, u2)));
         when(userService.findById(Mockito.anyInt())).thenReturn(Mono.just(u1));
-        when(userService.create(Mockito.any(User.class))).thenReturn(Mono.just(u1));
-        when(userService.update(Mockito.any(User.class))).thenReturn(Mono.just(u2));
+        when(userService.save(Mockito.any(User.class))).thenReturn(Mono.just(u2));
     }
 
     @Test
@@ -89,7 +88,7 @@ public class UserControllerTests {
                 .exchange()
                 .expectStatus().isCreated()
                 .expectBody()
-                .jsonPath("$.id").isEqualTo(1)
+                .jsonPath("$.id").isEqualTo(2)
                 .consumeWith(document("createUser"));
     }
 

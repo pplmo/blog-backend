@@ -9,6 +9,8 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import java.time.Instant;
 
 /**
@@ -49,14 +51,17 @@ public class User {
     /**
      * user account created time
      */
+    @PastOrPresent
     private Instant created;
     /**
      * last active time
      */
+    @PastOrPresent
     private Instant activated;
     /**
      * last login time
      */
+    @Past
     private Instant logged;
     /**
      * user group

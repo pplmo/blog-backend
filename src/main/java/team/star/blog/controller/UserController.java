@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import team.star.blog.pojo.User;
 import team.star.blog.service.UserService;
 
 import javax.annotation.Resource;
-import java.net.URI;
 
 /**
  * @author mystic
@@ -31,12 +29,12 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<User> createUser(@RequestBody User user) {
-        return userService.create(user);
+        return userService.save(user);
     }
 
     @PatchMapping
     public Mono<User> updateUser(@RequestBody User user) {
-        return userService.update(user);
+        return userService.save(user);
     }
 
     @GetMapping("/{id}")

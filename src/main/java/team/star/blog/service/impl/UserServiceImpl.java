@@ -20,23 +20,19 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Mono<User> create(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public Mono<User> update(User user) {
-        return userRepository.save(user);
+    public Mono<User> save(User user) {
+        return userRepository.save(user)
+                .onErrorResume(err -> userRepository.findUserByName(user.getName())
+                        .flatMap(userFoundInDb -> {
+                            user.setId(userFoundInDb.getId());
+                            return userRepository.save(user);
+                        })
+                );
     }
 
     @Override
     public Mono<User> findById(Integer id) {
         return userRepository.findById(id);
-    }
-
-    @Override
-    public Mono<User> findByName(String name) {
-        return userRepository.findUserByName(name);
     }
 
     @Override
@@ -47,6 +43,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Mono<Void> deleteById(Integer id) {
         return userRepository.deleteById(id);
+    }
+
+    @Override
+    public Mono<User> findByName(String name) {
+        return userRepository.findUserByName(name);
     }
 
     @Override

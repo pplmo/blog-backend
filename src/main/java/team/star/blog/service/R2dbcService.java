@@ -8,19 +8,12 @@ import reactor.core.publisher.Mono;
  */
 public interface R2dbcService<T, ID> {
     /**
-     * create T
+     * create or update T
      *
      * @param t T
      * @return Mono<T>
      */
-    Mono<T> create(T t);
-
-    /**
-     * update T
-     * @param t T
-     * @return Mono<T>
-     */
-    Mono<T> update(T t);
+    Mono<T> save(T t);
 
     /**
      * find T by id
