@@ -1,5 +1,7 @@
 package team.star.blog.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -10,6 +12,8 @@ import org.springframework.data.relational.core.mapping.Table;
  */
 @Data
 @Table("t_option")
+@Builder(toBuilder = true)
+@JsonDeserialize(builder = Option.OptionBuilder.class)
 public class Option {
     @Id
     private int id;

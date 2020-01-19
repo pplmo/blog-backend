@@ -1,5 +1,7 @@
 package team.star.blog.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -12,6 +14,8 @@ import java.time.Instant;
  */
 @Data
 @Table("t_content")
+@Builder(toBuilder = true)
+@JsonDeserialize(builder = Content.ContentBuilder.class)
 public class Content {
     @Id
     private int id;
