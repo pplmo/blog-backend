@@ -13,9 +13,9 @@ import java.time.Instant;
  * @date 2019-12-15 19:45
  */
 @Data
-@Table("t_comment")
 @Builder(toBuilder = true)
 @JsonDeserialize(builder = Comment.CommentBuilder.class)
+@Table("t_comment")
 public class Comment {
     @Id
     private int id;

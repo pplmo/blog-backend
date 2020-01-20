@@ -11,9 +11,9 @@ import org.springframework.data.relational.core.mapping.Table;
  * @date 2019-12-15 19:45
  */
 @Data
-@Table("t_metadata")
 @Builder(toBuilder = true)
 @JsonDeserialize(builder = Metadata.MetadataBuilder.class)
+@Table("t_metadata")
 public class Metadata {
     @Id
     private int id;

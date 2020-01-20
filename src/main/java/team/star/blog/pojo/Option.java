@@ -11,9 +11,9 @@ import org.springframework.data.relational.core.mapping.Table;
  * @date 2019-12-15 19:44
  */
 @Data
-@Table("t_option")
 @Builder(toBuilder = true)
 @JsonDeserialize(builder = Option.OptionBuilder.class)
+@Table("t_option")
 public class Option {
     @Id
     private int id;
