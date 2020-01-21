@@ -1,5 +1,6 @@
 package team.star.blog.service.impl;
 
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import team.star.blog.pojo.Option;
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 /**
  * @author mystic
  */
+@Service
 public class OptionServiceImpl implements OptionService {
 
     @Resource

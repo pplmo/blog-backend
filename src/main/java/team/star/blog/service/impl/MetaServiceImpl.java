@@ -1,33 +1,35 @@
 package team.star.blog.service.impl;
 
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import team.star.blog.pojo.Metadata;
-import team.star.blog.repository.MetadataRepository;
-import team.star.blog.service.MetadataService;
+import team.star.blog.pojo.Meta;
+import team.star.blog.repository.MetaRepository;
+import team.star.blog.service.MetaService;
 
 import javax.annotation.Resource;
 
 /**
  * @author mystic
  */
-public class MetadataServiceImpl implements MetadataService {
+@Service
+public class MetaServiceImpl implements MetaService {
 
     @Resource
-    private MetadataRepository metadataRepository;
+    private MetaRepository metadataRepository;
 
     @Override
-    public Mono<Metadata> save(Metadata metadata) {
+    public Mono<Meta> save(Meta meta) {
         return null;
     }
 
     @Override
-    public Mono<Metadata> findById(Integer integer) {
+    public Mono<Meta> findById(Integer integer) {
         return null;
     }
 
     @Override
-    public Flux<Metadata> findAll() {
+    public Flux<Meta> findAll() {
         return null;
     }
 
