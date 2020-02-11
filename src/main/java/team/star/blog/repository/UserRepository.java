@@ -1,5 +1,6 @@
 package team.star.blog.repository;
 
+import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
@@ -15,6 +16,7 @@ public interface UserRepository extends R2dbcRepository<User, Integer> {
      * @param name username
      * @return User
      */
+    @Query("SELECT * FROM t_user WHERE name = :name")
     Mono<User> findUserByName(String name);
 
     /**
@@ -22,6 +24,7 @@ public interface UserRepository extends R2dbcRepository<User, Integer> {
      * @param name username
      * @return delete
      */
+    @Query("DELETE FROM t_user WHERE name = :name")
     Mono<Void> deleteUserByName(String name);
 
 }
