@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.0.M3'
+    id 'org.springframework.boot' version '2.3.0.M4'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */

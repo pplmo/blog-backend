@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -20,9 +18,7 @@ import java.time.Instant;
 @Data
 @Builder(toBuilder = true)
 @JsonDeserialize(builder = User.UserBuilder.class)
-@Table("t_user")
 public class User {
-    @Id
     private int id;
     /**
      * user name, uniqueness
