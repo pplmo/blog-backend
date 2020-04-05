@@ -21,7 +21,8 @@ if (!hasProperty("DOCKER_HUB_USERNAME") || !hasProperty("DOCKER_HUB_USERNAME")) 
     // Or, you need configure them in gradle.properties and use them as follow.
     jib {
         from {
-            image = "openjdk:${sourceCompatibility}"
+            image = "docker://openjdk:${sourceCompatibility}"
+//            image = "openjdk:${sourceCompatibility}"
             auth {
                 username = DOCKER_HUB_USERNAME
                 password = DOCKER_HUB_PASSWORD

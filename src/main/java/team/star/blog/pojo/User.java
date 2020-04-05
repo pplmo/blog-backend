@@ -3,12 +3,7 @@ package team.star.blog.pojo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.validator.constraints.URL;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.PastOrPresent;
 import java.time.Instant;
 
 /**
@@ -23,7 +18,6 @@ public class User {
     /**
      * user name, uniqueness
      */
-    @NotEmpty
     private String name;
     /**
      * user password
@@ -32,13 +26,10 @@ public class User {
     /**
      * user mail, uniqueness
      */
-    @Email
-    @NotEmpty
     private String mail;
     /**
      * user homepage
      */
-    @URL
     private String url;
     /**
      * user screen name, i.e. nickname
@@ -47,17 +38,14 @@ public class User {
     /**
      * user account created time
      */
-    @PastOrPresent
     private Instant created;
     /**
      * last active time
      */
-    @PastOrPresent
     private Instant activated;
     /**
      * last login time
      */
-    @Past
     private Instant logged;
     /**
      * user group
