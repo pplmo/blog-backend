@@ -3,6 +3,9 @@ package team.star.blog.pojo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.Instant;
 
@@ -13,9 +16,12 @@ import java.time.Instant;
 @Data
 @Builder(toBuilder = true)
 @JsonDeserialize(builder = Comment.CommentBuilder.class)
+@Table("t_comment")
 public class Comment {
+    @Id
     private int id;
     private int contentId;
+    @CreatedDate
     private Instant created;
     private int commentAuthorId;
     private String mail;

@@ -3,6 +3,10 @@ package team.star.blog.pojo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.Instant;
 
@@ -13,7 +17,9 @@ import java.time.Instant;
 @Data
 @Builder(toBuilder = true)
 @JsonDeserialize(builder = User.UserBuilder.class)
+@Table("t_user")
 public class User {
+    @Id
     private int id;
     /**
      * user name, uniqueness
@@ -38,6 +44,7 @@ public class User {
     /**
      * user account created time
      */
+    @CreatedDate
     private Instant created;
     /**
      * last active time
@@ -46,6 +53,7 @@ public class User {
     /**
      * last login time
      */
+    @LastModifiedDate
     private Instant logged;
     /**
      * user group

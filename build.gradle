@@ -15,18 +15,16 @@ sourceCompatibility = '11'
 
 /* ====== specify DockerHub repo By Google JIB framework ====== */
 // if logged on your local docker, you don't need to configure the following two global variable
-if (!hasProperty("DOCKER_HUB_USERNAME") || !hasProperty("DOCKER_HUB_USERNAME")) {
-    jib.to.image = "purplemystic/blog"
+// Or, you need configure them in gradle.properties and use them as follow.
+if (!hasProperty('DOCKER_HUB_USERNAME') || !hasProperty('DOCKER_HUB_PASSWORD')) {
+    jib.to.image = 'purplemystic/blog'
 } else {
-    // Or, you need configure them in gradle.properties and use them as follow.
     jib {
+        container.format = 'OCI'
         from {
-            image = "docker://openjdk:${sourceCompatibility}"
-//            image = "openjdk:${sourceCompatibility}"
-            auth {
-                username = DOCKER_HUB_USERNAME
-                password = DOCKER_HUB_PASSWORD
-            }
+            // Retrieves the base image from the Docker daemon.
+            // image = "docker://openjdk:${sourceCompatibility}"
+            image = "openjdk:${sourceCompatibility}"
         }
         to {
             image = "${DOCKER_HUB_USERNAME}/blog"
@@ -46,9 +44,9 @@ configurations {
 
 repositories {
     mavenLocal()
-    mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
     maven { url 'https://repo.spring.io/libs-snapshot' }
+    mavenCentral()
 }
 
 /* for rest docs */
