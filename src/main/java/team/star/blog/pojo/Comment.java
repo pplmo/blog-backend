@@ -3,10 +3,12 @@ package team.star.blog.pojo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import javax.validation.constraints.Email;
 import java.time.Instant;
 
 /**
@@ -24,7 +26,9 @@ public class Comment {
     @CreatedDate
     private Instant created;
     private int commentAuthorId;
+    @Email
     private String mail;
+    @URL
     private String url;
     private String ip;
     private String agent;
