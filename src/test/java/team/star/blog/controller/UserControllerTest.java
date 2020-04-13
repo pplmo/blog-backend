@@ -31,7 +31,7 @@ import static org.springframework.restdocs.webtestclient.WebTestClientRestDocume
  */
 @WebFluxTest(UserController.class)
 @ExtendWith(RestDocumentationExtension.class)
-public class UserControllerTests {
+public class UserControllerTest {
     @Autowired
     private ApplicationContext context;
     private WebTestClient client;
