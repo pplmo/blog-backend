@@ -43,10 +43,6 @@ class MetaControllerTest {
                 .build();
     }
 
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     void createMeta() {
     }

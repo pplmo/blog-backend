@@ -43,10 +43,6 @@ class ContentControllerTest {
                 .build();
     }
 
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     void createContent() {
     }

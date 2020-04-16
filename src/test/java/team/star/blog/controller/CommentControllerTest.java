@@ -43,10 +43,6 @@ class CommentControllerTest {
                 .build();
     }
 
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     void createComment() {
     }

@@ -43,10 +43,6 @@ class OptionControllerTest {
                 .build();
     }
 
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     void createOption() {
     }
