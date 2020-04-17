@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import team.star.blog.pojo.Comment;
 import team.star.blog.service.CommentService;
 
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
@@ -41,6 +42,8 @@ class CommentControllerTest {
                                 .withResponseDefaults(prettyPrint())
                 )
                 .build();
+
+        Comment c1 = Comment.builder().id(1).mail("cc@me.cc").build();
     }
 
     @Test
