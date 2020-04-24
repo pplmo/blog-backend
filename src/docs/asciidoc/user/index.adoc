@@ -6,7 +6,7 @@ Purple Mystic;
 :icons: font
 :source-highlighter: highlightjs
 
-include::createUser.adoc[]
-include::updateUser.adoc[]
-include::findUserById.adoc[]
-include::findAllUsers.adoc[]
+include::user/createUser.adoc[]
+include::user/updateUser.adoc[]
+include::user/findUserById.adoc[]
+include::user/findAllUsers.adoc[]

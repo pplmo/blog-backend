@@ -81,6 +81,7 @@ test {
 
 asciidoctor {
     configurations 'asciidoctorExtensions'
+    baseDirFollowsSourceDir()
     dependsOn test
     attributes 'snippets': snippetsDir
     inputs.dir snippetsDir
