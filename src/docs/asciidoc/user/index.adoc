@@ -1,6 +1,6 @@
 = Blog Restful API
 Purple Mystic;
-:toc: left ➊
+:toc: left
 :toc-title: Chapter
 :doctype: book
 :icons: font
