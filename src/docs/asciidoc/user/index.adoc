@@ -5,8 +5,9 @@ Purple Mystic;
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
+:sourcedir: {sourcedir}/user
 
-include::user/createUser.adoc[]
-include::user/updateUser.adoc[]
-include::user/findUserById.adoc[]
-include::user/findAllUsers.adoc[]
+include::createUser.adoc[]
+include::updateUser.adoc[]
+include::findUserById.adoc[]
+include::findAllUsers.adoc[]
