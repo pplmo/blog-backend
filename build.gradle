@@ -5,7 +5,6 @@ plugins {
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
     /* for rest docs */
     id 'org.asciidoctor.jvm.convert' version '3.2.0'
-    /*id 'org.asciidoctor.convert' version '2.4.0'*/
     /* generate image and then push it to DockerHub */
     id 'com.google.cloud.tools.jib' version '2.1.0'
 }
@@ -84,6 +83,10 @@ asciidoctor {
     dependsOn test
     attributes 'snippets': snippetsDir
     inputs.dir snippetsDir
+    sources {
+        include '**/index.adoc'
+    }
+    baseDirFollowsSourceFile()
 }
 
 bootJar {
