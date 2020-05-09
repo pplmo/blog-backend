@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.0.M4'
+    id 'org.springframework.boot' version '2.3.0.RC1'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
     /* for rest docs */
     id 'org.asciidoctor.jvm.convert' version '3.2.0'
     /* generate image and then push it to DockerHub */
-    id 'com.google.cloud.tools.jib' version '2.1.0'
+    id 'com.google.cloud.tools.jib' version '2.2.0'
 }
 
 group = 'team.star'
@@ -20,7 +20,6 @@ if (!hasProperty('DOCKER_HUB_USERNAME') || !hasProperty('DOCKER_HUB_PASSWORD')) 
     jib.to.image = 'purplemystic/blog'
 } else {
     jib {
-        container.format = 'OCI'
         from {
             // Retrieves the base image from the Docker daemon.
             // image = "docker://openjdk:${sourceCompatibility}"
