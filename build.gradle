@@ -1,17 +1,17 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.0.RC1'
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
     /* for rest docs */
     id 'org.asciidoctor.jvm.convert' version '3.2.0'
     /* generate image and then push it to DockerHub */
-    id 'com.google.cloud.tools.jib' version '2.2.0'
+    id 'com.google.cloud.tools.jib' version '2.4.0'
 }
 
 group = 'team.star'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '14'
 
 /* ====== specify DockerHub repo By Google JIB framework ====== */
 // if logged on your local docker, you don't need to configure the following two global variable
