@@ -3,7 +3,9 @@ install: true
 sudo: required
 
 os: linux
-jdk: openjdk11
+jdk:
+    - openjdk11
+    - openjdk14
 
 before_cache:
     - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
