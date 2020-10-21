@@ -11,7 +11,7 @@ plugins {
 
 group = 'team.star'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '14'
+sourceCompatibility = '15'
 
 /* ====== specify DockerHub repo By Google JIB framework ====== */
 // if logged on your local docker, you don't need to configure the following two global variable
