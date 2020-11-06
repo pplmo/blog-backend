@@ -1,6 +1,5 @@
 package team.star.blog.handler;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -9,6 +8,10 @@ import team.star.blog.pojo.User;
 import team.star.blog.repository.UserRepository;
 
 import javax.annotation.Resource;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.web.reactive.function.BodyInserters.fromPublisher;
+import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 
 /**
@@ -22,14 +25,28 @@ public class UserHandler {
 
     public Mono<ServerResponse> getById(ServerRequest request) {
         int id = Integer.parseInt(request.pathVariable("id"));
-        return ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(repo.findById(id), User.class);
+        return repo.findById(id)
+                .flatMap(user -> ok().contentType(APPLICATION_JSON).bodyValue(user))
+                .switchIfEmpty(ServerResponse.notFound().build());
     }
 
     public Mono<ServerResponse> getAll(ServerRequest request) {
-        return ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON)
+        return ok()
+                .contentType(APPLICATION_JSON)
                 .body(repo.findAll(), User.class);
+    }
+
+    public Mono<ServerResponse> save(ServerRequest request) {
+        Mono<User> user = request.bodyToMono(User.class);
+        return ok()
+                .contentType(APPLICATION_JSON)
+                .body(fromPublisher(user.flatMap(repo::save), User.class));
+    }
+
+    public Mono<ServerResponse> deleteById(ServerRequest request) {
+        int id = Integer.parseInt(request.pathVariable("id"));
+        return ok()
+                .contentType(APPLICATION_JSON)
+                .body(repo.deleteById(id), Void.class);
     }
 }
