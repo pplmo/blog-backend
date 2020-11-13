@@ -13,7 +13,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @Builder(toBuilder = true)
 @JsonDeserialize(builder = Meta.MetaBuilder.class)
-@Table("t_metadata")
+@Table("t_meta")
 public class Meta {
     @Id
     private int id;
