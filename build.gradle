@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.5.RELEASE'
+    id 'org.springframework.boot' version '2.4.1'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
     /* for rest docs */
     id 'org.asciidoctor.jvm.convert' version '3.3.0'
     /* generate image and then push it to DockerHub */
-    id 'com.google.cloud.tools.jib' version '2.6.0'
+    id 'com.google.cloud.tools.jib' version '2.7.0'
 }
 
 group = 'team.star'
@@ -50,7 +50,6 @@ repositories {
 /* for rest docs */
 ext {
     set('snippetsDir', file('build/generated-snippets'))
-    set('springRestdocsVersion', '2.0.4.RELEASE')
 }
 
 dependencies {
@@ -66,8 +65,8 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
     /* for rest docs */
-    testImplementation "org.springframework.restdocs:spring-restdocs-webtestclient:${springRestdocsVersion}"
-    asciidoctorExtensions "org.springframework.restdocs:spring-restdocs-asciidoctor:${springRestdocsVersion}"
+    testImplementation "org.springframework.restdocs:spring-restdocs-webtestclient"
+    asciidoctorExtensions "org.springframework.restdocs:spring-restdocs-asciidoctor"
 }
 
 test {
