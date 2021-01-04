@@ -1,7 +1,7 @@
 # blog-backend
 
 ## Travis CI Address
-https://travis-ci.com/PurpleMystic-star/blog-backend
+https://travis-ci.com/pplmo/blog-backend
 
 ## generate image and push it to docker hub 'purplemystic/blog'
 ```shell script
