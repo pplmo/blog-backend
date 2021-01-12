@@ -6,7 +6,7 @@ plugins {
     /* for rest docs */
     id 'org.asciidoctor.jvm.convert' version '3.3.0'
     /* generate image and then push it to DockerHub */
-    id 'com.google.cloud.tools.jib' version '2.7.0'
+    id 'com.google.cloud.tools.jib' version '2.7.1'
 }
 
 group = 'team.star'
