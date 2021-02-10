@@ -4,7 +4,7 @@ plugins {
     id 'java'
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
     /* for rest docs */
-    id 'org.asciidoctor.jvm.convert' version '3.3.0'
+    id 'org.asciidoctor.jvm.convert' version '3.3.1'
     /* generate image and then push it to DockerHub */
     id 'com.google.cloud.tools.jib' version '2.7.1'
 }
