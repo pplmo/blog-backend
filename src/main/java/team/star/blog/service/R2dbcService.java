@@ -3,6 +3,8 @@ package team.star.blog.service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 /**
  * @author mystic
  */
@@ -29,6 +31,13 @@ public interface R2dbcService<T, ID> {
      * @return Flux<T>
      */
     Flux<T> findAll();
+
+    /**
+     * fetch multiple entities by id list
+     * @param ids multiple id in a list
+     * @return Flux<T>
+     */
+    Flux<T> fetchByIds(List<ID> ids);
 
     /**
      * delete T by id

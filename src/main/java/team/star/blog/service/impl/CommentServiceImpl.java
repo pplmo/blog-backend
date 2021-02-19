@@ -8,6 +8,7 @@ import team.star.blog.repository.CommentRepository;
 import team.star.blog.service.CommentService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author mystic
@@ -30,6 +31,11 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Flux<Comment> findAll() {
+        return null;
+    }
+
+    @Override
+    public Flux<Comment> fetchByIds(List<Integer> ids) {
         return null;
     }
 

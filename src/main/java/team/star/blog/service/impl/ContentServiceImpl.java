@@ -8,6 +8,7 @@ import team.star.blog.repository.ContentRepository;
 import team.star.blog.service.ContentService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author mystic
@@ -30,6 +31,11 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public Flux<Content> findAll() {
+        return null;
+    }
+
+    @Override
+    public Flux<Content> fetchByIds(List<Integer> ids) {
         return null;
     }
 

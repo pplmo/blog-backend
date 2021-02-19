@@ -3,11 +3,14 @@ package team.star.blog.service.impl;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 import team.star.blog.pojo.User;
 import team.star.blog.repository.UserRepository;
 import team.star.blog.service.UserService;
 
 import javax.annotation.Resource;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * @author mystic
@@ -38,6 +41,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public Flux<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public Flux<User> fetchByIds(List<Integer> ids) {
+        return Flux.fromIterable(ids)
+                .parallel()
+                .runOn(Schedulers.boundedElastic())
+                .flatMap(this::findById)
+                .ordered(Comparator.comparingInt(User::getId));
     }
 
     @Override

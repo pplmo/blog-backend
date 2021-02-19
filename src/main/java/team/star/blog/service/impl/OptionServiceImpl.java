@@ -8,6 +8,7 @@ import team.star.blog.repository.OptionRepository;
 import team.star.blog.service.OptionService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author mystic
@@ -30,6 +31,11 @@ public class OptionServiceImpl implements OptionService {
 
     @Override
     public Flux<Option> findAll() {
+        return null;
+    }
+
+    @Override
+    public Flux<Option> fetchByIds(List<Integer> ids) {
         return null;
     }
 

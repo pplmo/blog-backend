@@ -8,6 +8,7 @@ import team.star.blog.repository.MetaRepository;
 import team.star.blog.service.MetaService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author mystic
@@ -30,6 +31,11 @@ public class MetaServiceImpl implements MetaService {
 
     @Override
     public Flux<Meta> findAll() {
+        return null;
+    }
+
+    @Override
+    public Flux<Meta> fetchByIds(List<Integer> ids) {
         return null;
     }
 
