@@ -50,8 +50,10 @@ docker run --rm --name blog --network my_br -p 8080:8080 purplemystic/blog
 pg_dump -U <user_name> <db_name> > blog.sql
 e.g. 
 pg_dump -U blog blog > blog.sql
+docker container exec pg_db pg_dump -U blog blog > blog.sql
 
 psql -U <user_name> <db_name> < blog.sql
 e.g. 
 psql blog blog < blog.sql
+docker container exec pg_db psql blog blog < blog.sql
 ```
