@@ -45,6 +45,29 @@ ALTER TABLE public.t_comment
     OWNER TO blog;
 
 --
+-- Name: t_comment_id_seq; Type: SEQUENCE; Schema: public; Owner: blog
+--
+
+CREATE SEQUENCE public.t_comment_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_comment_id_seq
+    OWNER TO blog;
+
+--
+-- Name: t_comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: blog
+--
+
+ALTER SEQUENCE public.t_comment_id_seq OWNED BY public.t_comment.id;
+
+
+--
 -- Name: t_content; Type: TABLE; Schema: public; Owner: blog
 --
 
@@ -73,6 +96,29 @@ ALTER TABLE public.t_content
     OWNER TO blog;
 
 --
+-- Name: t_content_id_seq; Type: SEQUENCE; Schema: public; Owner: blog
+--
+
+CREATE SEQUENCE public.t_content_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_content_id_seq
+    OWNER TO blog;
+
+--
+-- Name: t_content_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: blog
+--
+
+ALTER SEQUENCE public.t_content_id_seq OWNED BY public.t_content.id;
+
+
+--
 -- Name: t_meta; Type: TABLE; Schema: public; Owner: blog
 --
 
@@ -92,6 +138,29 @@ ALTER TABLE public.t_meta
     OWNER TO blog;
 
 --
+-- Name: t_meta_id_seq; Type: SEQUENCE; Schema: public; Owner: blog
+--
+
+CREATE SEQUENCE public.t_meta_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_meta_id_seq
+    OWNER TO blog;
+
+--
+-- Name: t_meta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: blog
+--
+
+ALTER SEQUENCE public.t_meta_id_seq OWNED BY public.t_meta.id;
+
+
+--
 -- Name: t_option; Type: TABLE; Schema: public; Owner: blog
 --
 
@@ -108,6 +177,29 @@ ALTER TABLE public.t_option
     OWNER TO blog;
 
 --
+-- Name: t_option_id_seq; Type: SEQUENCE; Schema: public; Owner: blog
+--
+
+CREATE SEQUENCE public.t_option_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_option_id_seq
+    OWNER TO blog;
+
+--
+-- Name: t_option_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: blog
+--
+
+ALTER SEQUENCE public.t_option_id_seq OWNED BY public.t_option.id;
+
+
+--
 -- Name: t_relationship; Type: TABLE; Schema: public; Owner: blog
 --
 
@@ -121,6 +213,29 @@ CREATE TABLE public.t_relationship
 
 ALTER TABLE public.t_relationship
     OWNER TO blog;
+
+--
+-- Name: t_relationship_id_seq; Type: SEQUENCE; Schema: public; Owner: blog
+--
+
+CREATE SEQUENCE public.t_relationship_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_relationship_id_seq
+    OWNER TO blog;
+
+--
+-- Name: t_relationship_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: blog
+--
+
+ALTER SEQUENCE public.t_relationship_id_seq OWNED BY public.t_relationship.id;
+
 
 --
 -- Name: t_user; Type: TABLE; Schema: public; Owner: blog
@@ -144,6 +259,77 @@ CREATE TABLE public.t_user
 
 ALTER TABLE public.t_user
     OWNER TO blog;
+
+--
+-- Name: t_user_id_seq; Type: SEQUENCE; Schema: public; Owner: blog
+--
+
+CREATE SEQUENCE public.t_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_user_id_seq
+    OWNER TO blog;
+
+--
+-- Name: t_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: blog
+--
+
+ALTER SEQUENCE public.t_user_id_seq OWNED BY public.t_user.id;
+
+
+--
+-- Name: t_comment id; Type: DEFAULT; Schema: public; Owner: blog
+--
+
+ALTER TABLE ONLY public.t_comment
+    ALTER COLUMN id SET DEFAULT nextval('public.t_comment_id_seq'::regclass);
+
+
+--
+-- Name: t_content id; Type: DEFAULT; Schema: public; Owner: blog
+--
+
+ALTER TABLE ONLY public.t_content
+    ALTER COLUMN id SET DEFAULT nextval('public.t_content_id_seq'::regclass);
+
+
+--
+-- Name: t_meta id; Type: DEFAULT; Schema: public; Owner: blog
+--
+
+ALTER TABLE ONLY public.t_meta
+    ALTER COLUMN id SET DEFAULT nextval('public.t_meta_id_seq'::regclass);
+
+
+--
+-- Name: t_option id; Type: DEFAULT; Schema: public; Owner: blog
+--
+
+ALTER TABLE ONLY public.t_option
+    ALTER COLUMN id SET DEFAULT nextval('public.t_option_id_seq'::regclass);
+
+
+--
+-- Name: t_relationship id; Type: DEFAULT; Schema: public; Owner: blog
+--
+
+ALTER TABLE ONLY public.t_relationship
+    ALTER COLUMN id SET DEFAULT nextval('public.t_relationship_id_seq'::regclass);
+
+
+--
+-- Name: t_user id; Type: DEFAULT; Schema: public; Owner: blog
+--
+
+ALTER TABLE ONLY public.t_user
+    ALTER COLUMN id SET DEFAULT nextval('public.t_user_id_seq'::regclass);
+
 
 --
 -- Data for Name: t_comment; Type: TABLE DATA; Schema: public; Owner: blog
@@ -193,7 +379,51 @@ COPY public.t_relationship (id, content_id, metadata_id) FROM stdin;
 
 COPY public.t_user (id, activated, auth_code, created, group_name, logged, mail, name, password, screen_name,
                     url) FROM stdin;
+1	2021-02-20 06:38:15.485874		2021-02-20 06:38:15.485874	gn	2021-02-20 06:38:15.485874	123@11.com	cc	123456	sn	http://127.0.0.1
+2	2021-02-20 06:39:03.793704		2021-02-20 06:39:03.793704	gn2	2021-02-20 06:39:03.793704	123@22.com	cc2	123456	sn2	http://127.0.0.1
 \.
+
+
+--
+-- Name: t_comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: blog
+--
+
+SELECT pg_catalog.setval('public.t_comment_id_seq', 1, false);
+
+
+--
+-- Name: t_content_id_seq; Type: SEQUENCE SET; Schema: public; Owner: blog
+--
+
+SELECT pg_catalog.setval('public.t_content_id_seq', 1, false);
+
+
+--
+-- Name: t_meta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: blog
+--
+
+SELECT pg_catalog.setval('public.t_meta_id_seq', 1, false);
+
+
+--
+-- Name: t_option_id_seq; Type: SEQUENCE SET; Schema: public; Owner: blog
+--
+
+SELECT pg_catalog.setval('public.t_option_id_seq', 1, false);
+
+
+--
+-- Name: t_relationship_id_seq; Type: SEQUENCE SET; Schema: public; Owner: blog
+--
+
+SELECT pg_catalog.setval('public.t_relationship_id_seq', 1, false);
+
+
+--
+-- Name: t_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: blog
+--
+
+SELECT pg_catalog.setval('public.t_user_id_seq', 2, true);
 
 
 --
