@@ -13,6 +13,7 @@ import team.star.blog.pojo.User;
 public interface UserRepository extends R2dbcRepository<User, Integer> {
     /**
      * find User by name
+     *
      * @param name username
      * @return User
      */
@@ -21,6 +22,7 @@ public interface UserRepository extends R2dbcRepository<User, Integer> {
 
     /**
      * delete user by name
+     *
      * @param name username
      * @return delete
      */

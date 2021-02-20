@@ -34,6 +34,7 @@ public interface R2dbcService<T, ID> {
 
     /**
      * fetch multiple entities by id list
+     *
      * @param ids multiple id in a list
      * @return Flux<T>
      */
