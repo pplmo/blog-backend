@@ -4,7 +4,7 @@ plugins {
     id 'java'
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
     /* for Spring Restdocs */
-    id 'org.asciidoctor.jvm.convert' version '3.3.1'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
     /* for OpenAPI */
     id "com.github.johnrengelman.processes" version "0.5.0"
     id "org.springdoc.openapi-gradle-plugin" version "1.3.1"
