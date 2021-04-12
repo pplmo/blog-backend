@@ -19,6 +19,7 @@ jobs:
             -
                 uses: actions/setup-java@v2
                 with:
+                    distribution: 'zulu'
                     java-version: ${{ matrix.java }}
 
             # add cache to improve workflow execution time
