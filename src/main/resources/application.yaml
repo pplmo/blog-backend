@@ -1,10 +1,14 @@
 spring:
     r2dbc:
-        url: r2dbc:pool:postgresql://localhost:5432/blog
+        url: r2dbc:postgresql://localhost:5432/blog
         username: blog
         password: blog
         pool:
             validation-query: SELECT 1
+            initial-size: 1
+            max-size: 10
+            max-idle-time: 30m
+            enabled: true
 logging:
     level:
         org.springframework.data.r2dbc: DEBUG
