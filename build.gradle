@@ -19,8 +19,9 @@ sourceCompatibility = '17'
 
 sonarqube {
     properties {
-        property 'sonar.host.url', 'http://localhost:9000'
-        property 'sonar.login', '849d0a95e7572891592272b917d82a55586cd785'
+        property "sonar.projectKey", "pplmo_blog-backend"
+        property "sonar.organization", "pplmo"
+        property "sonar.host.url", "https://sonarcloud.io"
     }
 }
 
