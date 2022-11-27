@@ -11,4 +11,6 @@ spring:
             enabled: true
 logging:
     level:
-        org.springframework.data.r2dbc: DEBUG
+        org.springframework.data.r2dbc: debug
+server:
+    shutdown: graceful
