@@ -1,5 +1,6 @@
 package team.star.blog.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -7,7 +8,6 @@ import team.star.blog.pojo.Option;
 import team.star.blog.repository.OptionRepository;
 import team.star.blog.service.OptionService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,8 +16,12 @@ import java.util.List;
 @Service
 public class OptionServiceImpl implements OptionService {
 
-    @Resource
-    private OptionRepository optionRepository;
+    private final OptionRepository optionRepository;
+
+    @Autowired
+    public OptionServiceImpl(OptionRepository optionRepository) {
+        this.optionRepository = optionRepository;
+    }
 
     @Override
     public Mono<Option> save(Option option) {

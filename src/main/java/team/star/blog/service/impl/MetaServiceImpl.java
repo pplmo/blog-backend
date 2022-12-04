@@ -1,5 +1,6 @@
 package team.star.blog.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -7,7 +8,6 @@ import team.star.blog.pojo.Meta;
 import team.star.blog.repository.MetaRepository;
 import team.star.blog.service.MetaService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,8 +16,12 @@ import java.util.List;
 @Service
 public class MetaServiceImpl implements MetaService {
 
-    @Resource
     private MetaRepository metadataRepository;
+
+    @Autowired
+    public MetaServiceImpl(MetaRepository metadataRepository) {
+        this.metadataRepository = metadataRepository;
+    }
 
     @Override
     public Mono<Meta> save(Meta meta) {

@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.0'
     id 'io.spring.dependency-management' version '1.1.0'
-    id 'org.graalvm.buildtools.native' version '0.9.18'
+    // id 'org.graalvm.buildtools.native' version '0.9.19'
     /* Referenced from https://github.com/spring-projects/spring-restdocs/tree/master/samples/web-test-client */
     /* for Spring Restdocs */
     id 'org.asciidoctor.jvm.convert' version '3.3.2'
@@ -22,7 +22,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    asciidoctorExtensions
+    asciidoctorExt
 }
 
 repositories {
@@ -36,9 +36,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.6.13'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.springframework.boot:spring-boot-properties-migrator'
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.0.0'
     runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'org.postgresql:r2dbc-postgresql'
     compileOnly 'org.projectlombok:lombok'
@@ -47,7 +45,7 @@ dependencies {
     testImplementation 'io.projectreactor:reactor-test'
     /* for rest docs */
     testImplementation "org.springframework.restdocs:spring-restdocs-webtestclient"
-    asciidoctorExtensions "org.springframework.restdocs:spring-restdocs-asciidoctor"
+    asciidoctorExt "org.springframework.restdocs:spring-restdocs-asciidoctor"
 }
 
 /* for rest docs */
@@ -63,10 +61,10 @@ tasks.named("test") {
 }
 
 tasks.named("asciidoctor") {
-    configurations 'asciidoctorExtensions'
+    inputs.dir snippetsDir
+    configurations 'asciidoctorExt'
     dependsOn test
     attributes 'snippets': snippetsDir
-    inputs.dir snippetsDir
     sources {
         include '**/index.adoc'
     }
@@ -74,8 +72,14 @@ tasks.named("asciidoctor") {
 }
 
 openApi {
+    apiDocsUrl.set("https://localhost:8080/api/docs")
     outputDir.set(file("$buildDir/docs"))
-    outputFileName.set("swagger.yaml")
+    outputFileName.set("swagger.yml")
+    waitTimeInSeconds.set(10)
+//    groupedApiMappings.set([
+//        "https://localhost:8080/v3/api-docs/groupA" to "swagger-groupA.json",
+//        "https://localhost:8080/v3/api-docs/groupB" to "swagger-groupB.json"
+//    ])
 }
 
 tasks.named("bootJar") {

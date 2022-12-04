@@ -1,5 +1,6 @@
 package team.star.blog.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -7,7 +8,6 @@ import team.star.blog.pojo.Comment;
 import team.star.blog.repository.CommentRepository;
 import team.star.blog.service.CommentService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,8 +16,12 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
 
-    @Resource
     private CommentRepository commentRepository;
+
+    @Autowired
+    public CommentServiceImpl(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+    }
 
     @Override
     public Mono<Comment> save(Comment comment) {
