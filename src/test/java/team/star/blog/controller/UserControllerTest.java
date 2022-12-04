@@ -41,14 +41,14 @@ public class UserControllerTest {
     @BeforeEach
     void setUp(RestDocumentationContextProvider provider) {
         client = WebTestClient.bindToApplicationContext(context)
-                .configureClient()
-                .filter(
-                        documentationConfiguration(provider)
-                                .operationPreprocessors()
-                                .withRequestDefaults(prettyPrint())
-                                .withResponseDefaults(prettyPrint())
-                )
-                .build();
+            .configureClient()
+            .filter(
+                documentationConfiguration(provider)
+                    .operationPreprocessors()
+                    .withRequestDefaults(prettyPrint())
+                    .withResponseDefaults(prettyPrint())
+            )
+            .build();
 
         User u1 = User.builder().id(1).name("Mystic").build();
         User u2 = User.builder().id(2).name("Ran").build();
@@ -61,48 +61,48 @@ public class UserControllerTest {
     @Test
     void findUserById() {
         client.get().uri("/user/{id}", 1)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody(User.class)
-                .consumeWith(document("findUserById",
-                        pathParameters(parameterWithName("id").description("User ID"))
-                ));
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody(User.class)
+            .consumeWith(document("findUserById",
+                pathParameters(parameterWithName("id").description("User ID"))
+            ));
 
     }
 
     @Test
     void findAllUsers() {
         client.get().uri("/user").exchange()
-                .expectStatus().isOk()
-                .expectBodyList(User.class)
-                .consumeWith(document("findAllUsers"));
+            .expectStatus().isOk()
+            .expectBodyList(User.class)
+            .consumeWith(document("findAllUsers"));
     }
 
     @Test
     void createUser() {
         User u3 = User.builder().name("cc").build();
         client.post().uri("/user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(u3), User.class)
-                .exchange()
-                .expectStatus().isCreated()
-                .expectBody()
-                .jsonPath("$.id").isEqualTo(2)
-                .consumeWith(document("createUser"));
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .body(Mono.just(u3), User.class)
+            .exchange()
+            .expectStatus().isCreated()
+            .expectBody()
+            .jsonPath("$.id").isEqualTo(2)
+            .consumeWith(document("createUser"));
     }
 
     @Test
     void updateUser() {
         User u2 = User.builder().id(2).name("cc").build();
         client.patch().uri("/user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(u2), User.class)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody()
-                .jsonPath("$.name").isEqualTo("Ran")
-                .consumeWith(document("updateUser"));
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .body(Mono.just(u2), User.class)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody()
+            .jsonPath("$.name").isEqualTo("Ran")
+            .consumeWith(document("updateUser"));
     }
 }
