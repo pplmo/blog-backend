@@ -31,7 +31,7 @@ import static org.springframework.restdocs.webtestclient.WebTestClientRestDocume
  */
 @WebFluxTest(UserController.class)
 @ExtendWith(RestDocumentationExtension.class)
-public class UserControllerTest {
+class UserControllerTest {
     @Autowired
     private ApplicationContext context;
     private WebTestClient client;
@@ -48,6 +48,7 @@ public class UserControllerTest {
                     .withRequestDefaults(prettyPrint())
                     .withResponseDefaults(prettyPrint())
             )
+            .baseUrl("/api/v1/")
             .build();
 
         User u1 = User.builder().id(1).name("Mystic").build();
