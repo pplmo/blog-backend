@@ -8,7 +8,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import javax.validation.constraints.Email;
+import jakarta.validation.constraints.Email;
+
 import java.time.Instant;
 
 /**
