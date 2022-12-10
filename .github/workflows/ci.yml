@@ -27,5 +27,4 @@ jobs:
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
                     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-                # skip the tests now, test it later when the testing is okay
-                run: ./gradlew build -x test sonar --info
+                run: ./gradlew build sonar --info
