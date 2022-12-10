@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
@@ -15,7 +16,8 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import team.star.blog.pojo.User;
-import team.star.blog.service.UserService;
+import team.star.blog.repository.UserRepository;
+import team.star.blog.service.impl.UserServiceImpl;
 
 import java.util.List;
 
@@ -31,12 +33,13 @@ import static org.springframework.restdocs.webtestclient.WebTestClientRestDocume
  */
 @WebFluxTest(UserController.class)
 @ExtendWith(RestDocumentationExtension.class)
+@Import(UserServiceImpl.class)
 class UserControllerTest {
     @Autowired
     private ApplicationContext context;
     private WebTestClient client;
     @MockBean
-    private UserService userService;
+    private UserRepository repo;
 
     @BeforeEach
     void setUp(RestDocumentationContextProvider provider) {
@@ -54,9 +57,9 @@ class UserControllerTest {
         User u1 = User.builder().id(1).name("Mystic").build();
         User u2 = User.builder().id(2).name("Ran").build();
 
-        when(userService.findAll()).thenReturn(Flux.fromIterable(List.of(u1, u2)));
-        when(userService.findById(Mockito.anyInt())).thenReturn(Mono.just(u1));
-        when(userService.save(Mockito.any(User.class))).thenReturn(Mono.just(u2));
+        when(repo.findAll()).thenReturn(Flux.fromIterable(List.of(u1, u2)));
+        when(repo.findById(Mockito.anyInt())).thenReturn(Mono.just(u1));
+        when(repo.save(Mockito.any(User.class))).thenReturn(Mono.just(u2));
     }
 
     @Test
