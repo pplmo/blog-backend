@@ -9,6 +9,9 @@ spring:
             max-size: 10
             max-idle-time: 30m
             enabled: true
+    output:
+        ansi:
+            enabled: always
 logging:
     level:
         org.springframework.data.r2dbc: debug
