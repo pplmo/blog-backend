@@ -83,7 +83,7 @@ sonar {
 // if logged on your local docker, you don't need to configure the following two global variable
 // Or, you need to configure them in gradle.properties and use them as follows.
 configure<JibExtension> {
-    from.image = "openjdk:${java.sourceCompatibility}"
+    from.image = "eclipse-temurin:${java.sourceCompatibility}"
 
     if (!hasProperty("DOCKER_HUB_USERNAME") || !hasProperty("DOCKER_HUB_PASSWORD")) {
         to.image = "pplmx/blog"
@@ -95,8 +95,16 @@ configure<JibExtension> {
 }
 
 configure<OpenApiExtension> {
-    apiDocsUrl.set(uri("https://localhost:8080/api/docs").toString())
+    apiDocsUrl.set(uri("http://localhost:8080/api/docs").toString())
     outputDir.set(file("$buildDir/docs"))
-    outputFileName.set("swagger.yml")
+    outputFileName.set("openapi.yml")
     waitTimeInSeconds.set(10)
+}
+
+// TODO: this is a workaround, remove it later
+rootProject.afterEvaluate {
+    val forkedSpringBootRun = project.tasks.named("forkedSpringBootRun")
+    forkedSpringBootRun.configure {
+        doNotTrackState("See https://github.com/springdoc/springdoc-openapi-gradle-plugin/issues/102")
+    }
 }

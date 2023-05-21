@@ -14,8 +14,8 @@ test:
 	@gradlew test
 
 # Generate Javadoc
-javadoc:
-	@gradlew javadoc
+doc:
+	@gradlew generateOpenApiDocs
 
 # Run the project
 run:
