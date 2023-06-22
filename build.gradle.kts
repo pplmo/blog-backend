@@ -11,7 +11,7 @@ repositories {
 
 plugins {
     java
-    id("org.springframework.boot") version "3.1.0"
+    id("org.springframework.boot") version "3.1.1"
     id("io.spring.dependency-management") version "1.1.0"
     id("org.graalvm.buildtools.native") version "0.9.22"
     /* for Spring Restdocs */
