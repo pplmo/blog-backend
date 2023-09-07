@@ -5,6 +5,18 @@ group = "team.star"
 version = "0.0.1-SNAPSHOT"
 
 repositories {
+    maven {
+        url = uri("https://maven.aliyun.com/repository/public")
+    }
+    maven {
+        url = uri("https://maven.aliyun.com/repository/spring")
+    }
+    maven {
+        url = uri("https://maven.aliyun.com/repository/gradle-plugin")
+    }
+    maven {
+        url = uri("https://maven.aliyun.com/repository/spring-plugin")
+    }
     mavenLocal()
     mavenCentral()
 }
@@ -25,9 +37,6 @@ plugins {
 }
 
 java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(20))
-    }
     sourceCompatibility = JavaVersion.VERSION_20
 }
 
@@ -52,7 +61,7 @@ dependencies {
 }
 
 /* for rest docs */
-val snippetsDir = file("$buildDir/generated-snippets")
+val snippetsDir = file("${layout.buildDirectory}/generated-snippets")
 
 tasks.test {
     outputs.dir(snippetsDir)
@@ -96,15 +105,7 @@ configure<JibExtension> {
 
 configure<OpenApiExtension> {
     apiDocsUrl.set(uri("http://localhost:8080/api/docs").toString())
-    outputDir.set(file("$buildDir/docs"))
+    outputDir.set(file("${layout.buildDirectory}/docs"))
     outputFileName.set("openapi.yml")
     waitTimeInSeconds.set(10)
-}
-
-// TODO: this is a workaround, remove it later
-rootProject.afterEvaluate {
-    val forkedSpringBootRun = project.tasks.named("forkedSpringBootRun")
-    forkedSpringBootRun.configure {
-        doNotTrackState("See https://github.com/springdoc/springdoc-openapi-gradle-plugin/issues/102")
-    }
 }
