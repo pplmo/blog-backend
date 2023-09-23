@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class ContentServiceImpl implements ContentService {
 
-    private ContentRepository contentRepository;
+    private final ContentRepository contentRepository;
 
     @Autowired
     public ContentServiceImpl(ContentRepository contentRepository) {

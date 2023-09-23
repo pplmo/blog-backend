@@ -19,7 +19,7 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 @Component
 public class UserHandler {
 
-    private UserRepository repo;
+    private final UserRepository repo;
 
     @Autowired
     public UserHandler(UserRepository repo) {

@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class MetaServiceImpl implements MetaService {
 
-    private MetaRepository metadataRepository;
+    private final MetaRepository metadataRepository;
 
     @Autowired
     public MetaServiceImpl(MetaRepository metadataRepository) {

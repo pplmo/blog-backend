@@ -15,7 +15,7 @@ import team.star.blog.service.ContentService;
 @RequestMapping("/content")
 public class ContentController {
 
-    private ContentService contentService;
+    private final ContentService contentService;
 
     @Autowired
     public ContentController(ContentService contentService) {

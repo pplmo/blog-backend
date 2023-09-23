@@ -15,7 +15,7 @@ import team.star.blog.service.CommentService;
 @RequestMapping("/comment")
 public class CommentController {
 
-    private CommentService commentService;
+    private final CommentService commentService;
 
     @Autowired
     public CommentController(CommentService commentService) {
