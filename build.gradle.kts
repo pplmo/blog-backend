@@ -77,6 +77,11 @@ tasks.named("asciidoctor").configure {
 tasks.named("bootJar").configure {
 }
 
+// TODO this is a workaround, remove it upon the issue is fixed
+tasks.named("forkedSpringBootRun").configure {
+    doNotTrackState("See https://github.com/springdoc/springdoc-openapi-gradle-plugin/issues/102")
+}
+
 sonar {
     properties {
         property("sonar.projectKey", project.findProperty("sonarProjectKey") ?: "pplmo_blog-backend")
