@@ -1,14 +1,13 @@
 package team.star.blog.pojo;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.validation.constraints.Email;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-
-import jakarta.validation.constraints.Email;
 
 import java.time.Instant;
 

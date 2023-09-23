@@ -1,7 +1,10 @@
 package team.star.blog.pojo;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
