@@ -30,7 +30,7 @@ psql blog blog <blog.sql
 
 # 3. create blog
 # use 8080 from container db
-docker run --rm --name blog --network container:pg_db purplemystic/blog
+docker run --rm --name blog --network container:pg_db pplmx/blog
 
 # *************** Solution 2 ***************
 # This solution is not ready: blog cannot access db:5432
@@ -45,7 +45,7 @@ docker run -d --name pg_db \
 
 psql blog blog <blog.sql
 
-docker run --rm --name blog --network my_br -p 8080:8080 purplemystic/blog
+docker run --rm --name blog --network my_br -p 8080:8080 pplmx/blog
 
 ```
 
