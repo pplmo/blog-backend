@@ -4,18 +4,18 @@ import org.springdoc.openapi.gradle.plugin.OpenApiExtension
 group = "team.star"
 version = "0.0.1-SNAPSHOT"
 
+val mavenUrls = listOf(
+    "https://maven.aliyun.com/repository/public",
+    "https://maven.aliyun.com/repository/spring",
+    "https://maven.aliyun.com/repository/gradle-plugin",
+    "https://maven.aliyun.com/repository/spring-plugin"
+)
+
 repositories {
-    maven {
-        url = uri("https://maven.aliyun.com/repository/public")
-    }
-    maven {
-        url = uri("https://maven.aliyun.com/repository/spring")
-    }
-    maven {
-        url = uri("https://maven.aliyun.com/repository/gradle-plugin")
-    }
-    maven {
-        url = uri("https://maven.aliyun.com/repository/spring-plugin")
+    mavenUrls.forEach { url ->
+        maven {
+            this.url = uri(url)
+        }
     }
     mavenLocal()
     mavenCentral()
@@ -23,25 +23,26 @@ repositories {
 
 plugins {
     java
-    id("org.springframework.boot") version "3.1.3"
+    id("org.springframework.boot") version "3.1.4"
     id("io.spring.dependency-management") version "1.1.3"
-    id("org.graalvm.buildtools.native") version "0.9.27"
-    /* for Spring Restdocs */
     id("org.asciidoctor.jvm.convert") version "3.3.2"
     /* for OpenAPI */
     id("com.github.johnrengelman.processes") version "0.5.0"
     id("org.springdoc.openapi-gradle-plugin") version "1.7.0"
     /* generate image and then push it to DockerHub */
-    id("com.google.cloud.tools.jib") version "3.3.2"
+    id("com.google.cloud.tools.jib") version "3.4.0"
     id("org.sonarqube") version "4.3.1.3277"
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_20
+    sourceCompatibility = JavaVersion.VERSION_21
 }
 
 configurations {
     create("asciidoctorExt")
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
 }
 
 dependencies {
@@ -61,30 +62,26 @@ dependencies {
 }
 
 /* for rest docs */
-val snippetsDir = file("${layout.buildDirectory}/generated-snippets")
+val snippetsDir = file("${layout.buildDirectory.get().asFile}/generated-snippets")
 
 tasks.test {
     outputs.dir(snippetsDir)
     useJUnitPlatform()
 }
 
-tasks.asciidoctor {
+tasks.named("asciidoctor").configure {
     inputs.dir(snippetsDir)
     dependsOn(tasks.test)
-    attributes(mapOf(
-        "snippets" to snippetsDir
-    ))
 }
 
-tasks.bootJar {
-    dependsOn(tasks.asciidoctor)
+tasks.named("bootJar").configure {
 }
 
 sonar {
     properties {
-        property("sonar.projectKey", "pplmo_blog-backend")
-        property("sonar.organization", "pplmo")
-        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.projectKey", project.findProperty("sonarProjectKey") ?: "pplmo_blog-backend")
+        property("sonar.organization", project.findProperty("sonarOrganization") ?: "pplmo")
+        property("sonar.host.url", project.findProperty("sonarHostUrl") ?: "https://sonarcloud.io")
     }
 }
 
@@ -92,7 +89,7 @@ sonar {
 // if logged on your local docker, you don't need to configure the following two global variable
 // Or, you need to configure them in gradle.properties and use them as follows.
 configure<JibExtension> {
-    from.image = "eclipse-temurin:${java.sourceCompatibility}"
+    from.image = "amazoncorretto:${java.sourceCompatibility}"
 
     if (!hasProperty("DOCKER_HUB_USERNAME") || !hasProperty("DOCKER_HUB_PASSWORD")) {
         to.image = "pplmx/blog"
@@ -105,7 +102,7 @@ configure<JibExtension> {
 
 configure<OpenApiExtension> {
     apiDocsUrl.set(uri("http://localhost:8080/api/docs").toString())
-    outputDir.set(file("${layout.buildDirectory}/docs"))
+    outputDir.set(file("${layout.buildDirectory.get().asFile}/docs"))
     outputFileName.set("openapi.yml")
     waitTimeInSeconds.set(10)
 }
