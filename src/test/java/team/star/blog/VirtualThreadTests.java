@@ -4,88 +4,22 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import team.star.blog.util.CommonUtil;
 
 import java.math.BigInteger;
 import java.util.concurrent.Executors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static team.star.blog.util.CommonUtil.factorial;
 
 class VirtualThreadTests {
-
-    private static final BigInteger[] dp = new BigInteger[10001];
     private int num;
     private long start;
 
-    /**
-     * calculate factorial directly
-     *
-     * @param n number
-     * @return factorial of n
-     */
-    private static BigInteger factorial(int n) {
-        BigInteger result = BigInteger.ONE;
-        for (int i = 2; i <= n; i++) {
-            result = result.multiply(BigInteger.valueOf(i));
-        }
-        return result;
-    }
-
-    /**
-     * calculate factorial using stream and parallel
-     *
-     * @param n number
-     * @return factorial of n
-     */
-    private static BigInteger factorial2(int n) {
-        return IntStream.rangeClosed(2, n)
-            .parallel()
-            .mapToObj(BigInteger::valueOf)
-            .reduce(BigInteger.ONE, BigInteger::multiply);
-    }
-
-    /**
-     * calculate factorial using divide and conquer
-     *
-     * @param n number
-     * @return factorial of n
-     */
-    private static BigInteger factorial3(int n) {
-        if (n <= 20) { // 对于小于等于20的数，直接计算
-            return smallFactorial(n);
-        }
-
-        int mid = n / 2;
-
-        // 分治计算
-        BigInteger left = factorial3(mid);
-        BigInteger right = factorial3(n - mid);
-
-        // 合并结果
-        return left.multiply(right);
-    }
-
-    /**
-     * calculate factorial using dynamic programming
-     *
-     * @param n number
-     * @return factorial of n
-     */
-    private static BigInteger factorial4(int n) {
-        if (n == 0) {
-            return BigInteger.ONE;
-        }
-
-        if (dp[n] != null) {
-            return dp[n];
-        }
-
-        dp[n] = BigInteger.valueOf(n).multiply(factorial4(n - 1));
-        return dp[n];
-    }
-
-    private static BigInteger smallFactorial(int n) {
-        return IntStream.rangeClosed(1, n)
-            .mapToObj(BigInteger::valueOf)
-            .reduce(BigInteger.ONE, BigInteger::multiply);
+    private static Stream<FactorialMethod> factorialMethods() {
+        return Stream.of(CommonUtil::factorial, CommonUtil::factorial2, CommonUtil::factorial3, CommonUtil::factorial4);
     }
 
     @BeforeEach
@@ -108,11 +42,25 @@ class VirtualThreadTests {
         }
     }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("factorialMethods")
+    void testVirtualThread(FactorialMethod method) {
+        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            executor.submit(() -> method.calculate(num));
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("factorialMethods")
     void testCachedThreadPool() {
         // Using cached thread pool to calculate factorial
         try (var executor = Executors.newCachedThreadPool()) {
             executor.submit(() -> factorial(num));
         }
+    }
+
+    @FunctionalInterface
+    interface FactorialMethod {
+        BigInteger calculate(int num);
     }
 }
