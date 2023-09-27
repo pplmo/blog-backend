@@ -52,10 +52,10 @@ class VirtualThreadTests {
 
     @ParameterizedTest
     @MethodSource("factorialMethods")
-    void testCachedThreadPool() {
+    void testCachedThreadPool(FactorialMethod method) {
         // Using cached thread pool to calculate factorial
         try (var executor = Executors.newCachedThreadPool()) {
-            executor.submit(() -> factorial(num));
+            executor.submit(() -> method.calculate(num));
         }
     }
 
