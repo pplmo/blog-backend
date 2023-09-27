@@ -56,8 +56,8 @@ class VirtualThreadTests {
         int mid = n / 2;
 
         // 分治计算
-        BigInteger left = factorial(mid);
-        BigInteger right = factorial(n - mid);
+        BigInteger left = factorial3(mid);
+        BigInteger right = factorial3(n - mid);
 
         // 合并结果
         return left.multiply(right);
@@ -78,7 +78,7 @@ class VirtualThreadTests {
             return dp[n];
         }
 
-        dp[n] = BigInteger.valueOf(n).multiply(factorial(n - 1));
+        dp[n] = BigInteger.valueOf(n).multiply(factorial4(n - 1));
         return dp[n];
     }
 
