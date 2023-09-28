@@ -1,10 +1,16 @@
 package team.star.blog.util;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class CommonUtil {
-    private static final BigInteger[] dp = new BigInteger[10001];
+    private static final List<BigInteger> dp = new ArrayList<>();
+
+    static {
+        dp.add(BigInteger.ONE); // 0的阶乘为1
+    }
 
     private CommonUtil() {
     }
@@ -64,16 +70,13 @@ public class CommonUtil {
      * @return factorial of n
      */
     public static BigInteger factorialWithDP(int n) {
-        if (n == 0) {
-            return BigInteger.ONE;
+        for (int i = dp.size(); i <= n; i++) {
+            BigInteger lastFactorial = dp.get(i - 1);
+            BigInteger thisFactorial = BigInteger.valueOf(i).multiply(lastFactorial);
+            dp.add(thisFactorial);
         }
 
-        if (dp[n] != null) {
-            return dp[n];
-        }
-
-        dp[n] = BigInteger.valueOf(n).multiply(factorialWithDP(n - 1));
-        return dp[n];
+        return dp.get(n);
     }
 
     private static BigInteger smallFactorial(int n) {
