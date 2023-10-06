@@ -139,7 +139,7 @@ class Factorial {
      * @return factorial of n
      */
     public static BigInteger withDivideConquer(int n) {
-        if (n <= 20) { // 对于小于等于20的数，直接计算
+        if (n <= 20) { // for small number, use direct method
             return multiplyDirectlyButWithParallelStream(n);
         }
 
