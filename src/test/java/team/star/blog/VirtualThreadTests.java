@@ -99,7 +99,7 @@ class Factorial {
     private static final List<BigInteger> dp = new ArrayList<>();
 
     static {
-        dp.add(BigInteger.ONE); // 0的阶乘为1
+        dp.add(BigInteger.ONE); // 0! = 1
     }
 
     private Factorial() {
@@ -144,12 +144,9 @@ class Factorial {
         }
 
         int mid = n / 2;
-
-        // 分治计算
         BigInteger left = withDivideConquer(mid);
         BigInteger right = withDivideConquer(n - mid);
 
-        // 合并结果
         return left.multiply(right);
     }
 
@@ -163,7 +160,6 @@ class Factorial {
         for (int i = dp.size(); i <= n; i++) {
             dp.add(BigInteger.valueOf(i).multiply(dp.get(i - 1)));
         }
-
         return dp.get(n);
     }
 }
