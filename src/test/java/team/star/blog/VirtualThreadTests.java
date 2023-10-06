@@ -161,9 +161,7 @@ class Factorial {
      */
     public static BigInteger withDP(int n) {
         for (int i = dp.size(); i <= n; i++) {
-            BigInteger lastFactorial = dp.get(i - 1);
-            BigInteger thisFactorial = BigInteger.valueOf(i).multiply(lastFactorial);
-            dp.add(thisFactorial);
+            dp.add(BigInteger.valueOf(i).multiply(dp.get(i - 1)));
         }
 
         return dp.get(n);
