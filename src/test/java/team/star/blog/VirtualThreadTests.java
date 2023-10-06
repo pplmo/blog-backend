@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import team.star.blog.util.CommonUtil;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 class VirtualThreadTests {
@@ -18,11 +20,11 @@ class VirtualThreadTests {
 
     private static Stream<NamedFactorialMethod> factorialMethods() {
         return Stream.of(
-            new NamedFactorialMethod(CommonUtil::factorial, "factorial direct"),
-            new NamedFactorialMethod(CommonUtil::factorialWithParallelStream, "factorial direct by parallel stream"),
-            new NamedFactorialMethod(CommonUtil::factorialWithDivideConquer, "factorial with divide and conquer")
+            new NamedFactorialMethod(Factorial::multiplyDirectly, "factorial direct"),
+            new NamedFactorialMethod(Factorial::multiplyDirectlyButWithParallelStream, "factorial direct by parallel stream"),
+            new NamedFactorialMethod(Factorial::withDivideConquer, "factorial with divide and conquer")
             // if test DP, it seems it only supports the max number of 20000, otherwise it will throw Connection reset
-            // new NamedFactorialMethod(CommonUtil::factorialWithDP, "factorial with dynamic programming")
+            // new NamedFactorialMethod(Factorial::withDP, "factorial with dynamic programming")
         );
     }
 
@@ -90,5 +92,80 @@ class VirtualThreadTests {
         String getName() {
             return name;
         }
+    }
+}
+
+class Factorial {
+    private static final List<BigInteger> dp = new ArrayList<>();
+
+    static {
+        dp.add(BigInteger.ONE); // 0的阶乘为1
+    }
+
+    private Factorial() {
+    }
+
+    /**
+     * calculate factorial directly
+     *
+     * @param n number
+     * @return factorial of n
+     */
+    public static BigInteger multiplyDirectly(int n) {
+        BigInteger result = BigInteger.ONE;
+        for (int i = 2; i <= n; i++) {
+            result = result.multiply(BigInteger.valueOf(i));
+        }
+        return result;
+    }
+
+    /**
+     * calculate factorial using stream and parallel
+     *
+     * @param n number
+     * @return factorial of n
+     */
+    public static BigInteger multiplyDirectlyButWithParallelStream(int n) {
+        return IntStream.rangeClosed(2, n)
+            .parallel()
+            .mapToObj(BigInteger::valueOf)
+            .reduce(BigInteger.ONE, BigInteger::multiply);
+    }
+
+    /**
+     * calculate factorial using divide and conquer
+     *
+     * @param n number
+     * @return factorial of n
+     */
+    public static BigInteger withDivideConquer(int n) {
+        if (n <= 20) { // 对于小于等于20的数，直接计算
+            return multiplyDirectlyButWithParallelStream(n);
+        }
+
+        int mid = n / 2;
+
+        // 分治计算
+        BigInteger left = withDivideConquer(mid);
+        BigInteger right = withDivideConquer(n - mid);
+
+        // 合并结果
+        return left.multiply(right);
+    }
+
+    /**
+     * calculate factorial using dynamic programming
+     *
+     * @param n number
+     * @return factorial of n
+     */
+    public static BigInteger withDP(int n) {
+        for (int i = dp.size(); i <= n; i++) {
+            BigInteger lastFactorial = dp.get(i - 1);
+            BigInteger thisFactorial = BigInteger.valueOf(i).multiply(lastFactorial);
+            dp.add(thisFactorial);
+        }
+
+        return dp.get(n);
     }
 }
