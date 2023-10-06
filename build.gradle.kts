@@ -31,7 +31,7 @@ plugins {
     id("org.springdoc.openapi-gradle-plugin") version "1.7.0"
     /* generate image and then push it to DockerHub */
     id("com.google.cloud.tools.jib") version "3.4.0"
-    id("org.sonarqube") version "4.4.0.3356"
+    id("org.sonarqube") version "4.4.1.3373"
 }
 
 java {
