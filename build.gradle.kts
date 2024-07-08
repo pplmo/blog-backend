@@ -24,7 +24,7 @@ repositories {
 plugins {
     java
     id("org.springframework.boot") version "3.3.1"
-    id("io.spring.dependency-management") version "1.1.5"
+    id("io.spring.dependency-management") version "1.1.6"
     id("org.asciidoctor.jvm.convert") version "4.0.2"
     /* for OpenAPI */
     id("com.github.johnrengelman.processes") version "0.5.0"
